@@ -1,8 +1,12 @@
 #include <bits/stdc++.h>
 
+bool solve(int n){
+	return n > 0 && (n & (n - 1)) == 0 && (n & 0x55555555) != 0;
+}
+
 int main(){
-	// check if a number is power of 4 or not
-	// Approach 1 -> recursive/loop based, keep diving by 4, remainder should be 0
-	
+	int n;
+	std::cin >> n;
+	std::cout << solve(n);
 	return 0;
 }
