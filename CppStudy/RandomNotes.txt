@@ -1,0 +1,19 @@
+
+- Iterating over a meetings array -> c++ 17
+	vector<pair<int,int>> meetings;
+	for (const auto& [start, end] : meetings) {
+		cout << start << " " << end << "\n";
+	}
+
+- Sorting the same ->
+	// default sort by start time
+	sort(meetings.begin(), meetings.end(),
+     [](const auto& a, const auto& b) {
+         return a.first < b.first;
+     });
+
+- c++ stl to find a maximum value in an array, then find the the earlier occurence of that value->
+	auto it = std::max_element(arr.begin(), arr.end()); // this can also accept custom comp just like std::sort
+	// it points to the *first* occurrence of the maximum
+	int maxValue = *it;
+	int index   = std::distance(arr.begin(), it);	
