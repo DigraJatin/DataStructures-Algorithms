@@ -17,3 +17,27 @@
 	// it points to the *first* occurrence of the maximum
 	int maxValue = *it;
 	int index   = std::distance(arr.begin(), it);	
+	
+- code to find maximum value of end day in a vector<vector<int>>& events array, events[i] = [startDayi, endDayi].
+	int lastDay = std::max_element(
+		events.begin(),
+		events.end(),
+		[](const auto& a, const auto& b) {
+			return a[1] < b[1];   // compare endDay
+		}
+	)->at(1);
+	
+	If events was vector<pair<int,int>>-
+		int lastDay = std::max_element(
+		events.begin(),
+		events.end(),
+		[](const auto& a, const auto& b) {
+			return a.second < b.second;
+		}
+	)->second;
+
+- lamda in c++
+	[capture](parameters) -> return_type {
+		// body
+	}
+
