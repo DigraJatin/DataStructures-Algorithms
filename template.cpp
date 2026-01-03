@@ -3,54 +3,91 @@ using namespace std;
 
 class Solution {
 public:
+    // Function to check if a number is prime using the Sieve of Eratosthenes method
     bool sievofEratosthenes(int num) {
-        bool retVal = true;
-        for(int i = 2; i * i <= num; i++) {
-            if (num % i == 0) {
-                retVal = false;
-                break;
-            }
+        if (num <= 1) return false;
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0) return false;
         }
-        return retVal;   
+        return true;
     }
 
-    bool completePrime(int num) {
-        if(sievofEratosthenes(num) == false){
-            return false;
-        }
-        std::string numStr = std::to_string(num);
-        int n = numStr.size();
-        
-        int prefix = 0;
-        for(int i = 0 ; i < n ; i++){
-            prefix = prefix*10 + (numStr[i] - '0');
-            if(sievofEratosthenes(prefix) == false){
+    // Function to check if a number is palindrome
+    bool isPalindrome(int num) {
+        string strNum = to_string(num);
+        int left = 0;
+        int right = strNum.length() - 1;
+        while (left < right) {
+            if (strNum[left] != strNum[right]) {
                 return false;
             }
+            left++;
+            right--;
         }
+        return true;
+    }
 
-        int suffix = 0;
-        int j = 0;
-        for(int i = n-1 ; i >= 0 ; i--){
-            int currDigit = (numStr[i] - '0');
-            suffix = currDigit*pow(10,j) + suffix;
-            if(sievofEratosthenes(suffix) == false){
-                return false;
+    // Function to check if a number is perfect square
+    // Using sqrt function, works safely for int range
+    bool isPerfectSquare(int num) {
+        if (num < 0) return false;
+        int root = static_cast<int>(std::sqrt(num));
+        return 1LL * root * root == num;
+    }
+
+    // Overloaded function to check if a number is perfect square for long long range
+    bool isPerfectSquare(long long num) {
+        if (num < 0) return false;
+
+        if (num == 0) return true;
+        long long lo = 1, hi = num;
+
+        while (lo <= hi) {
+            long long mid = lo + (hi - lo) / 2;
+
+            if (mid <= num / mid) {
+                if (mid * mid == num) return true;
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
             }
-            j++;
         }
+        return false;
+    }
 
-        return true;   
+    // Function to compute the floor of the square root of a number
+    long long floorSqrt(long long r) {
+        if (r == 0) return 0;
+
+        long long lo = 1, hi = r, ans = 0;
+
+        while (lo <= hi) {
+            long long mid = lo + (hi - lo) / 2;
+
+            if (mid <= r / mid) {   // safe now (mid >= 1)
+                ans = mid;
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        return ans;
+    }
+
+
+    // Function to check if a number is a power of two
+    bool isPowerOfTwo(int num) {
+        if (num <= 0) return false;
+        return (num & (num - 1)) == 0;
     }
 };
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+    Solution solution;
 
-    Solution sol;
-    int n = 1;
-    std::cout<<sol.completePrime(n);
+    // call to solving functions can be placed here
 
     return 0;
 }
