@@ -8,7 +8,7 @@
 - Integer to English Words (Parsing)
 - Longest Valid Parentheses (Stack / DP)
 - Reverse Nodes in K-Group (Linked List)
-- Candy (Greedy, Two-pass)
+- Candy (Greedy, Two-pass) ✅
 - Text Justification (String Simulation)
 - Maximum Gap (Bucket Sort)
 - Shortest Subarray with Sum at Least K (Deque)
