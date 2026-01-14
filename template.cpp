@@ -80,6 +80,21 @@ public:
         if (num <= 0) return false;
         return (num & (num - 1)) == 0;
     }
+
+    // Function to generate all divisors of a number
+    vector<int> genrateDivisors(int num) {
+        vector<int> divisors;
+        for (int i = 1; i * i <= num; i++) {
+            if (num % i == 0) {
+                divisors.push_back(i);
+                if (i != num / i) {
+                    divisors.push_back(num / i);
+                }
+            }
+        }
+        sort(divisors.begin(), divisors.end());
+        return divisors;
+    }
 };
 
 int main() {
