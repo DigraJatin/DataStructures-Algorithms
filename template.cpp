@@ -3,6 +3,16 @@ using namespace std;
 
 class Solution {
 public:
+    // Precompute powers of 2 correctly, saves from unaccuracy of pow(2,n) std function
+    vector<int> precomputePow2(int n) {
+        vector<int> pow2(n);
+        pow2[0] = 1;
+        for (int i = 1; i < n; i++) {
+            pow2[i] = (pow2[i - 1] * 2) % 1e9 + 7;
+        }
+        return pow2
+    }
+
     // Function to check if a number is prime using the Sieve of Eratosthenes method
     bool sievofEratosthenes(int num) {
         if (num <= 1) return false;
