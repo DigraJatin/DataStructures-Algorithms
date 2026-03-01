@@ -3,6 +3,20 @@ using namespace std;
 
 class Solution {
 public:
+    // binary expo to find power
+    long long modpow(long long a, long long b, long long mod) {
+        long long result = 1;
+        a %= mod;
+        while(b > 0) {
+            if(b & 1)              // if last binary bit is 1
+                result = (result * a) % mod;
+
+            a = (a * a) % mod;     // square
+            b >>= 1;               // shift binary right
+        }
+        return result;
+    }
+
     // Precompute powers of 2 correctly, saves from unaccuracy of pow(2,n) std function
     vector<int> precomputePow2(int n) {
         vector<int> pow2(n);
