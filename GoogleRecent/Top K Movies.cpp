@@ -1,3 +1,6 @@
+/* Given N movies and movies of same genre are connected, each movie has a rating and ID,
+for a movie src, return top K rated movies similar to it, if 2 movies have same rating, higher ID wins */
+
 #include <iostream>
 #include <vector>
 #include <queue>
