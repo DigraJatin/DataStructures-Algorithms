@@ -91,3 +91,32 @@ int main() {
 
     return 0;
 }
+
+/*
+=== Lakes in Grid ===
+Grid encoding: 0 = land, 1 = water
+Goal: Count enclosed (interior) water regions (lakes) and enclosed land regions (islands).
+A region is "enclosed" if it has NO cell touching the boundary of the grid.
+
+Approach: Two-pass DFS
+Pass 1 - Boundary flood-fill:
+  - For every unvisited cell on the 4 borders, run DFS marking its entire same-value
+    connected component as visited. This eliminates all components that touch the boundary.
+
+Pass 2 - Interior counting:
+  - Scan all cells; any still-unvisited cell belongs to an enclosed region.
+  - If it's water (1) -> lake count++
+  - If it's land  (0) -> island count++
+  - Run DFS to mark the whole enclosed component as visited so it's not double-counted.
+
+TC: O(M * N)
+  - Every cell is visited at most twice (once in pass 1 boundary check, once in pass 2 scan),
+    and each DFS call processes each cell exactly once.
+  - Total work across all DFS calls = O(M * N)
+
+SC: O(M * N)
+  - O(M * N) for the visited matrix
+  - O(M * N) for the DFS call stack in the worst case (entire grid is one connected component,
+    stack depth = M * N). For large grids, an iterative BFS/DFS would be safer to avoid
+    stack overflow.
+*/

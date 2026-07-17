@@ -94,6 +94,31 @@ int main() {
 	Solution solve;
 	vector<int> ans = solve.getTopKSimilarMovies(movies, adj, 2, 3);
 	// print ans
+	for (int id : ans) cout << id << " ";
+	cout << endl;
 	return 0;
 }
 
+/*
+=== Top K Movies - Part 1 ===
+Approach: BFS + Min-Heap of size K
+- BFS explores all reachable movies from src (all same-genre movies).
+- Min-heap of size K keeps the top K rated movies seen so far.
+- For each new movie: if heap size < K, push it; else compare with heap top (worst of the K best)
+  and replace if the new movie is better.
+- At the end, pop all K from heap and reverse for descending order.
+
+Ranking: higher rating first, higher ID breaks ties.
+
+TC: O(V + E + V*logK)
+  - BFS visits every node and edge once: O(V + E)
+  - Each of the V nodes does at most one push/pop on a size-K heap: O(V * logK)
+  - Final extraction from heap: O(K * logK)
+  - Total: O(V + E + V*logK)
+
+SC: O(V + E)
+  - O(V) for visited array, BFS queue (at most V nodes), result vector
+  - O(K) for the min-heap (K <= V)
+  - O(E) for adjacency list (input, not extra but counted for completeness)
+  - Total: O(V + E)
+*/
