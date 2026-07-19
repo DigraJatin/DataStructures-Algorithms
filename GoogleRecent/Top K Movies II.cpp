@@ -22,7 +22,7 @@ public:
 
     	q.push(start);
     	visited[start] = true;
-		skip.insert(start);
+		  skip.insert(start);
     	vector<int> result;
 
     	while(!q.empty()){
