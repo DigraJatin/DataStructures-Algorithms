@@ -32,7 +32,7 @@ class Solution {
 			ad.score--;
 
 			if(ad.score > 0){
-				CoolDownEntry.push({ad, currentTime + gap + 1});
+				q.push({ad, currentTime + gap + 1});
 			}
 
 			return result;
