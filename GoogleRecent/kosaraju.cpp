@@ -1,3 +1,16 @@
+// The node that finishes last in the first DFS (meaning all of its outgoing paths were fully explored and it was the very last node pushed onto the stack) is the first node you start with in the second DFS.
+
+// So, the simplified TL;DR is:
+
+// DFS 1: Explore the original graph to find out what order nodes finish exploring.
+
+// Reverse: Flip all the arrows.
+
+// DFS 2: Explore the reversed graph, always starting with the unvisited node that finished last in step 1.
+
+// Whenever a DFS completes in step 3, you've captured one full Strongly Connected Component!
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
