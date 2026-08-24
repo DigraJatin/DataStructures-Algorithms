@@ -112,3 +112,38 @@ int painter_partition(const vector<int>& arr, int k) {
 // FFFFTTTT
 //     ↑
 //   first T
+
+
+
+// T T T T F F F
+//       ↑
+//     last T
+
+// Last T: T T T T F F F
+// while (lo < hi) {
+//     int mid = lo + (hi - lo + 1) / 2;  // upper mid
+
+//     if (isTrue(mid))
+//         lo = mid;
+//     else
+//         hi = mid - 1;
+// }
+
+// return lo;
+
+bool contains(int x) {
+    int lo = 0, hi = intervals.size() - 1;
+
+    // Find LAST T:
+    // intervals[i][0] <= x
+    while (lo < hi) {
+        int mid = lo + (hi - lo + 1) / 2;  // upper mid
+
+        if (intervals[mid][0] <= x)
+            lo = mid;        // mid could be the answer
+        else
+            hi = mid - 1;    // mid is definitely not the answer
+    }
+
+    return intervals[lo][1] >= x;
+}
