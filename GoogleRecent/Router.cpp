@@ -6,7 +6,7 @@ struct Router {
 double distance (const Router& a, const Router& b){
 	double dx = a.x - b.x;
 	double dy = a.y - b.y;
-	return sqrt(dx*dx - dy*dy);
+	return sqrt(dx*dx + dy*dy);
 }
 
 int main() {
@@ -35,6 +35,8 @@ int main() {
 // When Router A sends a message, it could first reach B; the message from Router B would further reach Router C but Router D would never receive this message.
 
 // The distance between two routers are calculated using "Euclidean Distance".
+
+// this code is for case when on collision the router breaks and can no longer transfer messages again
 
 bool canReach(const vector<Router>& routers, int src, int dest, double range) {
     int n = routers.size();
@@ -79,7 +81,9 @@ bool canReach(const vector<Router>& routers, int src, int dest, double range) {
 // SC O(V + E), WC O(N^2)
 
 // Follow-up:
-// Suppose we discard message collisions, how would you update your solution? For example, if router D is destination, and it receives 2 or more messages at the same time, the message is considered to be collided and then discarded i.e. not reachable. Only those messages are considered to be reachable which are not colliding with others at the same time.
+// Suppose we discard message collisions, how would you update your solution? For example, if router D is destination, 
+// and it receives 2 or more messages at the same time, the message is considered to be collided and then discarded i.e. not reachable. 
+// Only those messages are considered to be reachable which are not colliding with others at the same time.
 
 // Assume time for a message to reach any router is proportional to the distance.
 
@@ -134,7 +138,7 @@ bool canReachWithCollision(const vector<Router>& routers,
         auto [currDist, u] = pq.top();
         pq.pop();
 
-        if (currDist > dist[u] + EPS)
+        if (currDist > dist[u] + EPS) // eps is written on lesser side <
             continue;
 
         // Collision occurred.
@@ -169,8 +173,8 @@ bool canReachWithCollision(const vector<Router>& routers,
     return ways[dest] == 1;
 }
 
-TC O(N² + (V + E) log V), dense graph E = O(N²), O(N² log N)
-SC O(V + E), WC O(N^2)
+// TC O(N² + (V + E) log V), dense graph E = O(N²), O(N² log N)
+// SC O(V + E), WC O(N^2)
 
 
 
