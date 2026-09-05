@@ -3,9 +3,6 @@
 // After each insertion, you need to check whether any four points seen so far can form a square.
 // A square can be formed using any subset of 4 points.
 
-
-
-
 struct KeyHas{
 	bool operator()(const pair<int,int>& key) const {
 		auto h1 = hash<int>{}(key.first);
@@ -109,3 +106,4 @@ public:
 
 // Also see Detect Squares leetcode
 // https://leetcode.com/problems/detect-squares/description/
+// follow up to this is what we solved above
